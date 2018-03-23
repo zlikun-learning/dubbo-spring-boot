@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@Service
+@Service(timeout = 500)
 public class HelloServiceImpl implements HelloService {
 
     @Override

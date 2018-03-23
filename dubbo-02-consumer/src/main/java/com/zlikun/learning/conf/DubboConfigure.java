@@ -76,9 +76,11 @@ public class DubboConfigure {
         config.setClient("netty4");
         config.setGroup(group);
         config.setVersion(version);
-        config.setTimeout(3000);
+        config.setTimeout(1000);
         config.setCheck(false);
-        config.setAsync(true);      // 异步调用测试时使用
+        config.setRetries(0);
+        config.setCluster("failover");
+//        config.setAsync(true);      // 异步调用测试时使用
         return config;
     }
 
