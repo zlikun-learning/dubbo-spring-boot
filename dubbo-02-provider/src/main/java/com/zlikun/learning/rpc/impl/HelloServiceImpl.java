@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
  */
 @Slf4j
 @Component
-@Service(timeout = 500, retries = 0)
+@Service(timeout = 500, retries = 0, delay = -1)
 public class HelloServiceImpl implements HelloService {
 
     @Override

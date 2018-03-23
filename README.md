@@ -60,3 +60,7 @@
 > <http://dubbo.io/books/dubbo-user-book/demos/callback-parameter.html>
 - 事件通知（也没搞懂应用场景）
 > <http://dubbo.io/books/dubbo-user-book/demos/events-notify.html>
+- 延迟初始化
+> <http://dubbo.io/books/dubbo-user-book/demos/delay-publish.html>  
+- 延迟 5 秒暴露服务：<dubbo:service delay="5000" />  
+- 延迟到 Spring 初始化完成后，再暴露服务：<dubbo:service delay="-1" />
