@@ -78,6 +78,7 @@ public class DubboConfigure {
         config.setVersion(version);
         config.setTimeout(3000);
         config.setCheck(false);
+        config.setAsync(true);      // 异步调用测试时使用
         return config;
     }
 

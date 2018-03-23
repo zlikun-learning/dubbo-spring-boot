@@ -9,6 +9,8 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertTrue;
@@ -83,6 +85,31 @@ public class HelloServiceTest {
         RpcContext.getContext().setAttachment("author", "zlikun");
         // 执行调用，隐式参数将传递给服务端
         helloService.say("zlikun");
+    }
+
+    /**
+     * 异步调用，目前注解方式还无法配置方法级的异步，所以采用配置两个消费端方式实现区分
+     * http://dubbo.io/books/dubbo-user-book/demos/async-call.html
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
+    @Test
+    public void async() throws ExecutionException, InterruptedException {
+        // 执行方法调用，调用后方法立即返回
+        helloService.async("dubbo");
+        // 方法执行完成后会通知和设置Future，以获取结果
+        Future<String> futureDubbo = RpcContext.getContext().getFuture();
+
+        // 再次调用方法
+        helloService.async("spring");
+        Future<String> futureSpring = RpcContext.getContext().getFuture();
+
+        // 此时两个方法都在执行，执行耗时取决于两者耗时久的那一个
+        String dubboMessage = futureDubbo.get();
+        String springMessage = futureSpring.get();
+
+        // dubbo = async_dubbo, spring = async_spring
+        log.info("dubbo = {}, spring = {}", dubboMessage, springMessage);
     }
 
 }

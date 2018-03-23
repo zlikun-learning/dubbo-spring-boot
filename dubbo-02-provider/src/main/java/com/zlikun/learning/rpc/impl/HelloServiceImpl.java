@@ -26,4 +26,21 @@ public class HelloServiceImpl implements HelloService {
         return String.format("%s : Hello Guys !", name);
     }
 
+    @Override
+    public String async(String message) {
+        log.info("execute async method, message = {}", message);
+        return "async_" + message;
+    }
+
+    @Override
+    public String timeout(long mills, String message) {
+        log.info("begin execute timeout method, message = {}", message);
+        try {
+            Thread.sleep(mills);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.info("end execute timeout method, message = {}", message);
+        return "timeout_method_" + message;
+    }
 }
