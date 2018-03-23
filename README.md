@@ -37,3 +37,18 @@
     - 算法参见：http://en.wikipedia.org/wiki/Consistent_hashing
     - 缺省只对第一个参数 Hash，如果要修改，请配置 <dubbo:parameter key="hash.arguments" value="0,1" />
     - 缺省用 160 份虚拟节点，如果要修改，请配置 <dubbo:parameter key="hash.nodes" value="320" />
+ 
+#### 技巧Q&A
+- 服务消费不区分版本
+```
+<dubbo:reference id="barService" interface="com.foo.BarService" version="*" />
+```
+- 分组聚合
+> <http://dubbo.io/books/dubbo-user-book/demos/group-merger.html>
+- 结果缓存
+> <http://dubbo.io/books/dubbo-user-book/demos/result-cache.html>
+- 泛化调用
+    - <http://dubbo.io/books/dubbo-user-book/demos/generic-service.html>
+    - <http://dubbo.io/books/dubbo-user-book/demos/generic-reference.html>
+- 回声测试
+> <http://dubbo.io/books/dubbo-user-book/demos/echo-service.html>

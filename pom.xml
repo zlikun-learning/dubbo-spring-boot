@@ -22,6 +22,7 @@
         <module>dubbo-01-provider</module>
         <module>dubbo-01-consumer</module>
         <module>dubbo-02-provider</module>
+        <module>dubbo-02-consumer</module>
     </modules>
 
     <properties>
