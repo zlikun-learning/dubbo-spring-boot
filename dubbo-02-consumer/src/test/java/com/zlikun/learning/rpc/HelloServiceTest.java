@@ -73,6 +73,18 @@ public class HelloServiceTest {
 
     }
 
+    /**
+     * 隐式参数
+     * http://dubbo.io/books/dubbo-user-book/demos/attachment.html
+     */
+    @Test
+    public void attachment() {
+        // 调用前设置一个隐式参数
+        RpcContext.getContext().setAttachment("author", "zlikun");
+        // 执行调用，隐式参数将传递给服务端
+        helloService.say("zlikun");
+    }
+
 }
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 param_key = owner, param_value = zlikun

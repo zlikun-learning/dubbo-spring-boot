@@ -52,3 +52,5 @@
     - <http://dubbo.io/books/dubbo-user-book/demos/generic-reference.html>
 - 回声测试
 > <http://dubbo.io/books/dubbo-user-book/demos/echo-service.html>
+- 隐式参数
+> <http://dubbo.io/books/dubbo-user-book/demos/attachment.html>
