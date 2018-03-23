@@ -6,6 +6,11 @@ import com.zlikun.learning.rpc.HelloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 /**
  * 通过注解发布服务
  * @author zlikun <zlikun-dev@hotmail.com>
@@ -13,7 +18,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@Service(timeout = 500)
+@Service(timeout = 500, retries = 0)
 public class HelloServiceImpl implements HelloService {
 
     @Override
@@ -34,13 +39,19 @@ public class HelloServiceImpl implements HelloService {
 
     @Override
     public String timeout(long mills, String message) {
-        log.info("begin execute timeout method, message = {}", message);
+        long begin = System.currentTimeMillis();
         try {
             Thread.sleep(mills);
+            return "timeout_method_" + message;
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            long end = System.currentTimeMillis();
+            log.info("----------------> begin = {}, end = {}, elapsed = {} 毫秒!",
+                    LocalDateTime.ofInstant(Instant.ofEpochMilli(begin), ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS")),
+                    LocalDateTime.ofInstant(Instant.ofEpochMilli(end), ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS")),
+                    end - begin);
         }
-        log.info("end execute timeout method, message = {}", message);
-        return "timeout_method_" + message;
+        return null;
     }
 }

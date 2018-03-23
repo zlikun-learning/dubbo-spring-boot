@@ -78,7 +78,7 @@ public class DubboConfigure {
         config.setVersion(version);
         config.setTimeout(1000);
         config.setCheck(false);
-        config.setRetries(0);
+        config.setRetries(2);
         config.setCluster("failover");
 //        config.setAsync(true);      // 异步调用测试时使用
         return config;
