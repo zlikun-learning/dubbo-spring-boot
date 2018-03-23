@@ -56,3 +56,7 @@
 > <http://dubbo.io/books/dubbo-user-book/demos/attachment.html>
 - 异步调用
 > <http://dubbo.io/books/dubbo-user-book/demos/async-call.html>
+- 参数回调（还没搞懂应用场景）
+> <http://dubbo.io/books/dubbo-user-book/demos/callback-parameter.html>
+- 事件通知（也没搞懂应用场景）
+> <http://dubbo.io/books/dubbo-user-book/demos/events-notify.html>
