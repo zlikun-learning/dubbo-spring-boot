@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 通过注解发布服务
@@ -20,6 +21,8 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class HelloServiceImpl implements HelloService {
 
+    private final AtomicLong counter = new AtomicLong();
+
     @Override
     public String timeout(long mills, String message) {
         long begin = System.currentTimeMillis();
@@ -30,7 +33,7 @@ public class HelloServiceImpl implements HelloService {
             e.printStackTrace();
         } finally {
             long end = System.currentTimeMillis();
-            log.info("----------------> begin = {}, end = {}, elapsed = {} 毫秒!",
+            log.info("{} ----------------> begin = {}, end = {}, elapsed = {} 毫秒!", counter.incrementAndGet(),
                     LocalDateTime.ofInstant(Instant.ofEpochMilli(begin), ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS")),
                     LocalDateTime.ofInstant(Instant.ofEpochMilli(end), ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS")),
                     end - begin);

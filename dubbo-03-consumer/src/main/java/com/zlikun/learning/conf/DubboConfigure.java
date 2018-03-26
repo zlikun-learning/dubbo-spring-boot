@@ -79,9 +79,9 @@ public class DubboConfigure {
         config.setTimeout(1000);
         config.setCheck(false);
 //        config.setRetries(0);
-        config.setCluster("failover");
-        // 客户端配置连接控制，用于覆盖服务端配置，测试是否可以覆盖
-        config.setConnections(7);
+//        config.setCluster("failover");
+//        // 客户端配置连接控制，用于覆盖服务端配置，测试是否可以覆盖
+//        config.setConnections(7);
         return config;
     }
 

@@ -95,10 +95,17 @@ public class DubboConfigure {
         // 当connections值比accepts值大的时候，会抛出如下异常
         // 2018-03-26 11:41:46.420 ERROR 10172 --- [erverWorker-5-5] c.a.d.remoting.transport.AbstractServer  :  [DUBBO] Close channel NettyChannel [channel=[id: 0x24ce7d61, L:/192.168.70.57:20880 - R:/192.168.70.57:57556]],
         // cause: The server /192.168.70.57:20880 connections greater than max config 5, dubbo version: 2.6.1, current host: 192.168.70.57
-        config.setAccepts(5);
+        config.setAccepts(2);
         // 客户端连接控制，限制客户端服务使用连接不超过10个
         // dubbo协议本身使用长连接，connections参数表示建立长连接数
-        config.setConnections(5);
+        config.setConnections(3);
+        // http://dubbo.io/books/dubbo-user-book/demos/concurrency-control.html
+        // 并发控制，服务端并发执行或占用线程池线程数不超过5个，客户端超过这个线程数时，只接收指定线程数的请求，其它请求将失败
+        // 实测：服务端executes参数可以约束actives参数(如：客户端)，限制其取值应小于等于executes的值，否则触发下面错误：
+        // cause: The service using threads greater than <dubbo:service executes="5" /> limited.
+        config.setExecutes(5);
+        // 并发控制，客户端并发执行不超过10个，应指：客户端线程池容量上限，该配置可以被客户端覆盖，所以可以使用优先级更高的executes参数为控制
+//        config.setActives(20);
         return config;
     }
 
