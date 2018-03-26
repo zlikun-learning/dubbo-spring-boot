@@ -23,6 +23,8 @@
         <module>dubbo-01-consumer</module>
         <module>dubbo-02-provider</module>
         <module>dubbo-02-consumer</module>
+        <module>dubbo-03-provider</module>
+        <module>dubbo-03-consumer</module>
     </modules>
 
     <properties>
