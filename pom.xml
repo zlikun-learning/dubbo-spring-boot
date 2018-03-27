@@ -25,12 +25,14 @@
         <module>dubbo-02-consumer</module>
         <module>dubbo-03-provider</module>
         <module>dubbo-03-consumer</module>
+        <module>dubbo-04-provider</module>
+        <module>dubbo-04-consumer</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <dubbo.version>2.6.1</dubbo.version>
+        <dubbo.version>2.5.10</dubbo.version>
         <netty4_version>4.0.35.Final</netty4_version>
         <zookeeper_version>3.4.9</zookeeper_version>
         <zkclient_version>0.2</zkclient_version>
